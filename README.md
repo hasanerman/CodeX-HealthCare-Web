@@ -1,91 +1,91 @@
-## Ostim Tech - Google Developer Groups Hackathon '26   04-05.04.2026 
-
+## Ostim Tech - Google Developer Groups Hackathon '26   04-05.04.2026
 
 # CodeX HealthCare
 
-CodeX HealthCare, kullanicinin saglik verilerini tek bir panelde toplayan ve yorumlayan bir dijital saglik platformudur. Sistem; kullanici profili, ilac arama, laboratuvar raporu analizi, suphe taramasi, takvim-planlama ve bildirim yonetimini ayni API uzerinden sunar.
+CodeX HealthCare is a digital health platform that consolidates and interprets a user's health data in a single dashboard. The system provides user profile management, medication search, laboratory report analysis, symptom screening, calendar planning, and notification management — all through a single API.
 
-> Uyari: Bu sistem klinik bilgilendirme amaclidir. Tibbi teshis veya tedavi yerine gecmez.
+> Warning: This system is intended for clinical informational purposes only. It is not a substitute for medical diagnosis or treatment.
 
-## Sistem Kapsami
+## System Scope
 
-- Kimlik yonetimi: kayit, giris, JWT tabanli oturum dogrulama
-- Profil analizi: boy-kilo-yas-cinsiyet verilerinden AI destekli yorum
-- Ilac modulu: metin ve gorsel tabanli ilac sorgulama
-- Laboratuvar modulu: PDF/gorsel rapordan ozet ve kritik deger analizi
-- Suphe tarama: soru-cevap bazli risk puani ve aciklayici degerlendirme
-- Takvim: kullaniciya ait etkinlik, ilac ve hatirlatma kayitlari
-- Bildirimler: SMTP e-posta ve Expo push token tabanli mobil bildirim
-- Harita entegrasyonu: yakin hastane/eczane bilgisi ve konum temelli yardimci servisler
-- Oyun modulu: bilissel oyunlarda skor kaydi ve gecmis goruntuleme
+- Identity management: registration, login, JWT-based session verification
+- Profile analysis: AI-powered interpretation from height, weight, age, and gender data
+- Medication module: text and image-based medication queries
+- Laboratory module: summary and critical value analysis from PDF/image reports
+- Symptom screening: Q&A-based risk scoring and explanatory assessment
+- Calendar: user-specific event, medication, and reminder records
+- Notifications: SMTP email and Expo push token-based mobile notifications
+- Map integration: nearby hospital/pharmacy information and location-based auxiliary services
+- Game module: score saving and history viewing for cognitive games
 
-## Mimari Ozet
+## Architecture Overview
 
-Sistem iki ana katmandan olusur:
+The system consists of two main layers:
 
-1. `frontend`: React + Vite tabanli istemci arayuzu  
-2. `backend`: Express tabanli REST API ve is kurallari
+1. `frontend`: React + Vite-based client interface
+2. `backend`: Express-based REST API and business logic
 
-Veri katmani MySQL uzerindedir. Dosya yukleme, JWT dogrulama, cron tabanli hatirlatma isleri ve AI cagrilari backend tarafinda merkezi olarak yonetilir.
+The data layer runs on MySQL. File uploads, JWT verification, cron-based reminder jobs, and AI calls are all managed centrally on the backend.
 
-## Temel Teknolojiler
+## Core Technologies
 
 - Frontend: React, Vite, Tailwind CSS, Axios
 - Backend: Node.js, Express, mysql2, jsonwebtoken, bcryptjs, multer
-- Zamanlama/Bildirim: node-cron, nodemailer, Expo Push API
-- AI/Analiz: Google Gemini
-- Harita/Konum: OpenStreetMap, Overpass API, istemci tarafi konum servisleri
+- Scheduling/Notifications: node-cron, nodemailer, Expo Push API
+- AI/Analysis: Google Gemini
+- Map/Location: OpenStreetMap, Overpass API, client-side location services
 
-## Moduller ve Islevler
+## Modules and Functions
 
-### Kullanici ve Oturum
+### User and Session
 
-- Kullanici kaydi ve girisi
-- JWT ile korumali endpoint erisimi
-- Profil bilgisinin tutulmasi ve guncellenmesi
+- User registration and login
+- JWT-protected endpoint access
+- Profile data storage and updates
 
-### Klinik Destek Katmani
+### Clinical Support Layer
 
-- Ilac arama ve ilac gorselinden tanimlama
-- Laboratuvar raporu analizi ve yapilandirilmis cikti
-- Suphe tarama senaryolari ve risk skorlama
+- Medication search and identification from medication images
+- Laboratory report analysis and structured output
+- Symptom screening scenarios and risk scoring
 
-### Takvim ve Bildirim
+### Calendar and Notifications
 
-- Takvim etkinlik olusturma, guncelleme, silme
-- Zamanlanmis e-posta hatirlatmalari
-- Cihaza push bildirimi gonderimi (kayitli Expo tokenlar)
+- Calendar event creation, update, and deletion
+- Scheduled email reminders
+- Push notification delivery to devices (registered Expo tokens)
 
-### Etkilesim ve Oyunlar
+### Interactions and Games
 
-- Oyun skorlarini kullanici bazli saklama
-- Sonuclarin gecmise donuk listelenmesi
+- Per-user game score storage
+- Historical listing of results
 
-## Veri Modeli Ozeti
+## Data Model Summary
 
-`database` klasorunde sistemin cekirdek SQL dosyalari bulunur. Yapida temelde su alanlar yer alir:
+The `database` folder contains the core SQL files for the system. The structure primarily covers the following areas:
 
-- Kullanici ve profil bilgileri
-- Kullanici etkilesim kayitlari (analiz, tarama vb.)
-- Takvim etkinlikleri
-- Oyun skor gecmisi
-- Bildirim token ve dedupe log kayitlari
-- Suphe tarama kosul/soru/opsiyon veri setleri
+- User and profile information
+- User interaction records (analysis, screening, etc.)
+- Calendar events
+- Game score history
+- Notification token and dedupe log records
+- Symptom screening condition/question/option datasets
 
-## Dokumantasyon Dosyalari
+## Documentation Files
 
-- `apis.md`: endpoint sozlesmeleri, JWT, multipart alanlari
-- `mail_notify.md`: e-posta ve push hatirlatma akislari
-- `calendar_questions.md`: takvim ve suphe tarama entegrasyon notlari
-- `MOBIL_ENTEGRASYON_PROMPT.md`: mobil istemci gelistirme icin entegrasyon talimatlari
+- `apis.md`: endpoint contracts, JWT, multipart fields
+- `mail_notify.md`: email and push reminder flows
+- `calendar_questions.md`: calendar and symptom screening integration notes
+- `MOBIL_ENTEGRASYON_PROMPT.md`: integration instructions for mobile client development
 
-## Guvenlik ve Uyari Notlari
+## Security and Disclaimer Notes
 
-- JWT, SMTP ve API anahtarlari sadece sunucu tarafinda korunmalidir.
-- Saglik verileri nedeniyle iletimde guvenli kanal kullanimi esastir.
-- AI ciktilari destekleyici niteliktedir; klinik karar mekanizmasi yerine kullanilmamalidir.
+- JWT, SMTP, and API keys must be protected on the server side only.
+- Due to the nature of health data, the use of secure channels for transmission is essential.
+- AI outputs are supplementary in nature and must not be used as a clinical decision-making mechanism.
 
 ## Developer Team
- - Yusuf Türker ALBAYRAK [https://github.com/TurkerAlbayrak]
- - Hasan Erman DAĞ [https://github.com/hasanerman]
- - Mir Mehmet PEKER [https://github.com/mirmehmet]
+
+- Yusuf Türker ALBAYRAK [https://github.com/TurkerAlbayrak]
+- Hasan Erman DAĞ [https://github.com/hasanerman]
+- Mir Mehmet PEKER [https://github.com/mirmehmet]
