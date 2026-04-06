@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: 'Inter', sans-serif;
+}
+
+#root {
+  width: 100%;
+}
+
+@theme {
+  --color-primary: #1e293b;
+  --color-primary-container: #334155;
+  --color-secondary: #64748b;
+  --color-tertiary: #0f172a;
+  
+  --color-surface: #ffffff;
+  --color-background: #f8fafc;
+  
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-on-surface: #0f172a;
+  --color-on-background: #0f172a;
+  
+  --color-surface-container-low: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-surface-container-highest: #cbd5e1;
+  
+  --color-outline: #94a3b8;
+  --color-outline-variant: #cbd5e1;
+  
+  --color-error: #be123c;
+  --color-success: #059669;
+
+  --font-headline: "Manrope";
+  --font-body: "Inter";
+  --font-label: "Inter";
+
+  --radius-default: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.active-nav-glow {
+  box-shadow: 0 4px 12px -2px rgba(30, 41, 59, 0.15);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.btn-shadow {
+  box-shadow: 0 10px 15px -3px rgba(30, 41, 59, 0.1), 0 4px 6px -4px rgba(30, 41, 59, 0.1);
+}
+
+.card-shadow {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
